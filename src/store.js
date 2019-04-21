@@ -14,10 +14,10 @@ let initialState = {
 
 export const UPDATE_NAME = "UPDATE_NAME";
 export const UPDATE_CATEGORY = "UPDATE_CATEGORY"
-export const UPDATE_FIRST = "UPDATE_AUTHOR_FIRST"
-export const UPDATE_LAST  = "UPDATE_AUTHOR_LAST"
+export const UPDATE_AUTHOR_FIRST = "UPDATE_AUTHOR_FIRST"
+export const UPDATE_AUTHOR_LAST  = "UPDATE_AUTHOR_LAST"
 export const ADD_INGREDIENT = "ADD_INGREDIENT"
-export const UPDATE_INSTRUCTIONS = "UPDATE_INSTRUCTIONS"
+export const ADD_INSTRUCTION = "ADD_INSTRUCTION"
 export const ADD_RECIPE = "ADD_RECIPE"
 
 
@@ -28,14 +28,14 @@ function reducer(state = initialState, action){
             return {...state, name: payload };
         case UPDATE_CATEGORY:
             return {...state, category: payload };
-        case UPDATE_FIRST:
+        case UPDATE_AUTHOR_FIRST:
             return {...state, author_first: payload }
-        case UPDATE_LAST:
+        case UPDATE_AUTHOR_LAST:
             return{...state, authorLast: payload }
         case ADD_INGREDIENT:
             const newIngredients = [...state.ingredients, payload];
             return{...state, ingredients: newIngredients }
-        case UPDATE_INSTRUCTIONS: 
+        case ADD_INSTRUCTION: 
             const newInstructions = [...state.instructions, payload];
             return{...state, instructions: newInstructions}
         case ADD_RECIPE:
@@ -43,6 +43,7 @@ function reducer(state = initialState, action){
                 name,
                 category,
                 authorFirst, 
+                authorLast,
                 ingredients, 
                 instructions
             } = state;
@@ -54,7 +55,7 @@ function reducer(state = initialState, action){
                 ingredients,
                 instructions
             }
-            const addRecipes = [...state.recipes, payload];
+            const addRecipes = [...state.recipes, recipe];
             return{...state, recipes: addRecipes}
             
         default:
